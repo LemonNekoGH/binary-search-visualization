@@ -53,17 +53,17 @@ async function BinarySearch (arr: Array<number>, target: number): Promise<boolea
     mid = Math.floor((leftIndex + rightIndex) /2)
 
     await setPosition(point2, mid, false)
-    const p1 = await sleep(2000)
+    await sleep(2000)
 
     if (arr[mid] < target) {
       leftIndex = mid + 1; // 目标值在右侧
       await setPosition(point1, leftIndex, false)
-      const p2 = await sleep(2000)
+      await sleep(2000)
 
     } else if (arr[mid] > target){
       rightIndex = mid - 1; // 目标值在左侧
       await setPosition(point3, rightIndex, false)
-      const p3 = await sleep(2000)
+      await sleep(2000)
 
     } else if (arr[mid] === target) {
       alert("已找到目标")
