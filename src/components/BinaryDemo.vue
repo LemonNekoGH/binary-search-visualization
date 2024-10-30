@@ -17,17 +17,17 @@ let mid: number = Math.floor((array.value.length - 1) / 2)
 const goal = ref<number>(92)
 
 onMounted( () => {
-  window.addEventListener('resize', async () => {await init()})
+  window.addEventListener('resize', async () => {await handleResize()})
 })
 
 onBeforeUnmount(async() =>{
-  window.removeEventListener('resize', async() => await init())
+  window.removeEventListener('resize', async() => await handleResize())
 })
 
-async function init () {
-  await setPosition(point1, 0, true)
+async function handleResize () {
+  await setPosition(point1, leftIndex, true)
   await setPosition(point2, mid, true)
-  await setPosition(point3, array.value.length - 1, true)
+  await setPosition(point3, rightIndex, true)
 }
 
 async function play () {
@@ -35,7 +35,7 @@ async function play () {
   rightIndex = array.value.length - 1
   mid = Math.floor((array.value.length - 1) / 2)
   
-  await init()
+  await handleResize()
   await sleep(50)
   await BinarySearch(array.value, goal.value)
 
