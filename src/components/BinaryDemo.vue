@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {onBeforeUnmount, onMounted, ref, Ref} from 'vue'
 import { sleep } from "./utils.ts";
+import BinaryInstru from "./BinaryInstru.vue";
 
 const array = ref<number[]>([1,3,10,12,35,41,50,54,59,66,88,92,108, 109])
 
-const point1 = ref({x: 0, y: 0})
+const point1 = ref({x: 110, y: 110})
 const point2 = ref({x: 0, y: 0})
 const point3 = ref({x: 0, y: 0})
 const isPlaying = ref(false)
@@ -16,7 +17,8 @@ let rightIndex: number = array.value.length - 1
 let mid: number = Math.floor((array.value.length - 1) / 2)
 const goal = ref<number>(92)
 
-onMounted( () => {
+onMounted( async() => {
+  await handleResize()
   window.addEventListener('resize', async () => {await handleResize()})
 })
 
@@ -112,6 +114,7 @@ async function moving (point: Ref<{x:number, y:number}>, destX: number, destY: n
 </script>
 
 <template>
+  <binary-instru/>
 <p>{{isPlayTexts}}</p>
 <div class="demo">
   <div class="diving">
@@ -142,7 +145,7 @@ async function moving (point: Ref<{x:number, y:number}>, destX: number, destY: n
     display: flex
     flex-direction: row
     flex-wrap: wrap
-    justify-content: flex-start
+    justify-content: center
     .cards
       margin-bottom: 1.5em
       .box
