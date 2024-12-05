@@ -31,7 +31,7 @@ function jumpInto(uri: string){
       <el-menu-item index="2-1" @click="jumpInto('/demo')">
         二分查找
       </el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
+      <el-menu-item index="2-2" @click="jumpInto('/selection-sort')">选择排序</el-menu-item>
       <el-menu-item index="2-3">item three</el-menu-item>
       <el-sub-menu index="2-4">
         <template #title>item four</template>
